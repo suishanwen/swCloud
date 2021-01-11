@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "telegram.token",
+      "type": "java.lang.String",
+      "description": "Description for telegram.token."
+    },
+    {
+      "name": "telegram.chatId",
+      "type": "java.lang.String",
+      "description": "Description for telegram.chatId."
+    },
+    {
+      "name": "email.host",
+      "type": "java.lang.String",
+      "description": "Description for email.host."
+    },
+    {
+      "name": "email.user",
+      "type": "java.lang.String",
+      "description": "Description for email.user."
+    },
+    {
+      "name": "email.password",
+      "type": "java.lang.String",
+      "description": "Description for email.password."
+    }
+  ] }

@@ -1,0 +1,7 @@
+server:
+  port: 8051
+  servlet:
+    context-path: /sw/api
+spring:
+  profiles:
+    active: dev

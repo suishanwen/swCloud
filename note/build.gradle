@@ -1,0 +1,41 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.sw'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+ext {
+    springCloud = "2.2.3.RELEASE"
+    mysqlVersion = "8.0.21"
+    mapperVersion = "2.0.4"
+    fastjsonVersion = "1.2.70"
+    swagger2Versoin = "2.6.1"
+    ini4jVersoin = "0.5.4"
+    jsoupVersion = "1.13.1"
+    baiduApiVersoin = "4.12.0"
+
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.cloud:spring-cloud-starter:${springCloud}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${springCloud}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${springCloud}"
+    compile "mysql:mysql-connector-java:${mysqlVersion}"
+    compile "tk.mybatis:mapper-spring-boot-starter:${mapperVersion}"
+    compile "com.alibaba:fastjson:${fastjsonVersion}"
+    compile "io.springfox:springfox-swagger2:${swagger2Versoin}"
+    compile "io.springfox:springfox-swagger-ui:${swagger2Versoin}"
+    compile "org.ini4j:ini4j:${ini4jVersoin}"
+    compile "org.jsoup:jsoup:${jsoupVersion}"
+    compile("com.baidu.aip:java-sdk:${baiduApiVersoin}") {
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+    }
+}

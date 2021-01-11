@@ -1,0 +1,81 @@
+spring:
+  datasource:
+    url: jdbc:mysql://eoseos.space:8066/vote?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: xxx
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      minimum-idle: 10
+      maximum-pool-size: 10
+      idle-timeout: 60000
+      connection-timeout: 60000
+      max-lifetime: 0
+      connection-test-query: SELECT 1
+      pool-name: MyHikariCP
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: suishanwen
+    password: xxx
+    listener:
+      simple:
+        acknowledge-mode: manual
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 47.114.32.129:26379,49.234.57.240:26379,80.251.219.158:26379
+      password: xxx
+    password: xxx
+    lettuce:
+      pool:
+        max-active: 100
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization.write-dates-as-timestamps: false
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sw.note.model # 扫描实例类所在包
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+vm:
+  superuser: xxx
+  manager: xxx
+  manager1: xxx
+  delay: 15
+  delay1: 24
+  host: xxx
+  username: xxx
+  password: xxx
+  username1: xxx
+  password1: xxx
+speedup:
+  percent: 50
+  times: 10
+  interval: 0.75
+  exclude: 北京
+scheduled:
+  reset: xxx
+  sync: xxx
+  spider: xxx
+  cache: xxx
+  syncNode: xxx
+  initCache: false
+track:
+  report: true
+  report-detail: true
+  fetch: true
+  fetch-detail: true
+error:
+  ignore: false
+forbid:
+  concurrent: true
+ttl:
+  lock: 600
+ip:
+  dat: /home/vote/qqwry.dat

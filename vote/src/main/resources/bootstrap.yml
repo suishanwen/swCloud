@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: vote
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.110.230.73:8848
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml

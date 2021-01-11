@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sw.vote.mapper.ClientDirectExtMapper">
+    <insert id="insertClient">
+        INSERT INTO client_direct_ext(id,user_id,sort_no) values (#{id},#{userId},#{sortNo})
+    </insert>
+    <update id="batchUpdate">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update client_direct_ext
+            <set>
+                area=#{item.area},
+                remote_ip=#{item.remoteIp},
+                adsl_user=#{item.adslUser},
+                adsl_pwd=#{item.adslPwd},
+                opening_time=#{item.openingTime},
+                expire_time=#{item.expireTime}
+            </set>
+            where user_id = #{item.userId} and sort_no = #{item.sortNo}
+        </foreach>
+    </update>
+</mapper>

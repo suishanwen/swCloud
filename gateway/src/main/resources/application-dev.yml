@@ -1,0 +1,56 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedCredentials: true
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+            allowedHeaders: "*"
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
+      routes:
+        - id: note
+          uri: lb://note
+          order: 0
+          predicates:
+            - Path=/note/**
+          filters:
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@ipKeyResolver}"
+        - id: vote
+          uri: lb://vote
+          order: 1
+          predicates:
+            - Path=/vote/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 100
+                redis-rate-limiter.burstCapacity: 100
+                key-resolver: "#{@ipKeyResolver}"
+        - id: message
+          uri: lb://message
+          order: 2
+          predicates:
+            - Path=/message/**
+          filters:
+            - StripPrefix=1
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 47.114.32.129:26379,49.234.57.240:26379,80.251.219.158:26379
+      password: xxx
+    password: xxx

@@ -1,0 +1,13 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization.write-dates-as-timestamps: false
+telegram:
+  host: https://api.telegram.org
+  token: xxx
+  chatId: xxx
+email:
+  host: smtp.sina.com
+  user: controlservice@sina.com
+  password: a123456

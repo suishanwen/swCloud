@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sw.vote.mapper.ClientDirectMapper">
+    <update id="batchUpdate">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update client_direct
+            <set>
+                instance=#{item.instance},
+                reset_id=#{item.resetId},
+                project_name=#{item.projectName},
+                worker_id=#{item.workerId},
+                success=#{item.success},
+                reward=${item.reward},
+                update_time= #{item.updateTime,jdbcType=TIMESTAMP},
+                direct=#{item.direct},
+                version=#{item.version},
+                restart=#{item.restart}
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+</mapper>

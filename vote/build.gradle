@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.sw'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+ext {
+    springCloud = "2.2.3.RELEASE"
+    commonsPool2 = "2.8.0"
+    beanutils = "1.9.4"
+    mysqlVersion = "8.0.21"
+    mapperVersion = "2.0.4"
+    guavaVersion = "29.0-jre"
+    fastjsonVersion = "1.2.70"
+    swagger2Versoin = "2.6.1"
+    jsoupVersion = "1.13.1"
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-aop"
+    compile "org.springframework.boot:spring-boot-starter-amqp"
+    compile "org.springframework.boot:spring-boot-starter-websocket"
+    compile "org.springframework.boot:spring-boot-starter-data-redis"
+    compile "org.springframework.cloud:spring-cloud-starter:${springCloud}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${springCloud}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${springCloud}"
+    compile "org.apache.commons:commons-pool2:${commonsPool2}"
+    compile "commons-beanutils:commons-beanutils:${beanutils}"
+    compile "mysql:mysql-connector-java:${mysqlVersion}"
+    compile "tk.mybatis:mapper-spring-boot-starter:${mapperVersion}"
+    compile "com.google.guava:guava:${guavaVersion}"
+    compile "com.alibaba:fastjson:${fastjsonVersion}"
+    compile "io.springfox:springfox-swagger2:${swagger2Versoin}"
+    compile "io.springfox:springfox-swagger-ui:${swagger2Versoin}"
+    compile "org.jsoup:jsoup:${jsoupVersion}"
+}

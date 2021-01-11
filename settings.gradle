@@ -1,0 +1,6 @@
+rootProject.name = 'swCloud'
+include 'note'
+include 'vote'
+include 'message'
+include 'gateway'
+

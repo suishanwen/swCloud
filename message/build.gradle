@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.sw'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+ext {
+    springCloud = "2.2.3.RELEASE"
+    fastjsonVersion = "1.2.70"
+    javaMailVersion = "1.4.7"
+    swagger2Versoin = "2.6.1"
+
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.cloud:spring-cloud-starter:${springCloud}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:${springCloud}"
+    compile "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:${springCloud}"
+    compile "com.alibaba:fastjson:${fastjsonVersion}"
+    compile "javax.mail:mail:${javaMailVersion}"
+    compile "io.springfox:springfox-swagger2:${swagger2Versoin}"
+    compile "io.springfox:springfox-swagger-ui:${swagger2Versoin}"
+}
