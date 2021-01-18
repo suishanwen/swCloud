@@ -98,7 +98,7 @@ public interface ClientDataMapper extends tk.mybatis.mapper.common.Mapper<Client
             " reward\n" +
             "FROM\n" +
             " client_data \n" +
-            "AND date = #{date}\n" +
+            "WHERE date = #{date}\n" +
             "ORDER BY\n" +
             " sort_no ASC")
     List<ClientData> selectAllData(@Param("date") String date);
