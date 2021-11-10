@@ -68,7 +68,7 @@ public class FileService {
             String symbols = ini.get("trade").get("symbol");
             List<String> symbolList = JSON.parseArray(symbols, String.class);
             for (String symbol : symbolList) {
-                String target = symbol.contains("_") ? symbol.split("_")[1] : symbol.contains("usdt") ? "usdt" : symbol;
+                String target = symbol.contains("_") ? symbol.split("_")[1] : symbol.toUpperCase().contains("USD") ? "USD" : symbol;
                 String count = ini.get(symbol + "-stat").get("count");
                 List<Double> data = JSON.parseArray(count, Double.class);
                 if (data.size() == day) {
