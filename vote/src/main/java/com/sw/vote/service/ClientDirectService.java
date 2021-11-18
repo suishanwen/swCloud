@@ -1,6 +1,7 @@
 package com.sw.vote.service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.sw.vote.aspect.LogCost;
@@ -21,6 +22,7 @@ import com.sw.vote.model.entity.ClientDirectExt;
 import com.sw.vote.util.IpUtil;
 import com.sw.vote.util.ZipUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,6 +82,19 @@ public class ClientDirectService {
         }
     }
 
+
+    private String getWorkers(String userId) {
+        String workers = userProps.getWorkers();
+        if (Strings.isNotEmpty(workers)) {
+            JSONObject jsonObject = JSON.parseObject(workers);
+            workers = jsonObject.getString(userId);
+            if (Strings.isEmpty(workers)) {
+                workers = jsonObject.getString(userProps.getManager());
+            }
+        }
+        return workers;
+    }
+
     public String load(String userId, Integer sortNo, String version, String restart) {
         ClientDirectExt ext = clientDirectMapper.selectExtByUser(userId, sortNo);
         String id, adsl = "", pwd = "";
@@ -97,7 +112,8 @@ public class ClientDirectService {
         String sid = UUID.randomUUID().toString().split("-")[0];
         clientDirectCache.load(userId, sortNo, version, restart, sid);
         Integer userDelay = userProps.getManager().equals(userId) ? userProps.getDelay() : clientDirectCache.getSpeedup();
-        return String.format("%s|%s|%s|%s|%s", id, userDelay, adsl, pwd, sid);
+        String workers = getWorkers(userId);
+        return String.format("%s|%s|%s|%s|%s|%s", id, userDelay, adsl, pwd, sid, workers);
     }
 
     public String direct(ClientDirect clientDirect) {

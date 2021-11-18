@@ -41,4 +41,6 @@ dependencies {
     compile "io.springfox:springfox-swagger2:${swagger2Versoin}"
     compile "io.springfox:springfox-swagger-ui:${swagger2Versoin}"
     compile "org.jsoup:jsoup:${jsoupVersion}"
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 }
